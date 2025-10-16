@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forecast - WeatherPro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1><i class="fas fa-cloud-sun"></i> WeatherPro</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="forecast.html" class="nav-link active"><i class="fas fa-calendar-alt"></i> Forecast</a>
+                <a href="air-quality.html" class="nav-link"><i class="fas fa-wind"></i> Air Quality</a>
+                <a href="astronomy.html" class="nav-link"><i class="fas fa-sun"></i> Astronomy</a>
+                <a href="historical.html" class="nav-link"><i class="fas fa-history"></i> Historical</a>
+                <a href="alerts.html" class="nav-link"><i class="fas fa-exclamation-triangle"></i> Alerts</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <!-- Header Section -->
+        <header>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for a city..." autocomplete="off">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+                <div id="suggestions" class="suggestions-dropdown"></div>
+            </div>
+            <div class="user-location">
+                <button id="location-btn"><i class="fas fa-location-arrow"></i> Use My Location</button>
+            </div>
+        </header>
+
+        <main>
+            <h2><i class="fas fa-calendar-alt"></i> Weather Forecast</h2>
+            
+            <!-- Hourly Forecast Section -->
+            <section id="hourly-forecast" class="hourly-forecast-section">
+                <h3><i class="fas fa-clock"></i> 24-Hour Forecast</h3>
+                <div class="hourly-container">
+                    <!-- Hourly forecast items will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- 3-Day Forecast Section -->
+            <section id="forecast" class="forecast-section">
+                <h3><i class="fas fa-calendar-week"></i> 3-Day Forecast</h3>
+                <div class="forecast-container">
+                    <!-- Forecast days will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- 7-Day Forecast Section -->
+            <section id="week-forecast" class="forecast-section">
+                <h3><i class="fas fa-calendar"></i> 7-Day Forecast</h3>
+                <div class="forecast-container week-forecast-container">
+                    <!-- Weekly forecast days will be populated by JavaScript -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

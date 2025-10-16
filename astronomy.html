@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy - WeatherPro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1><i class="fas fa-cloud-sun"></i> WeatherPro</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="forecast.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Forecast</a>
+                <a href="air-quality.html" class="nav-link"><i class="fas fa-wind"></i> Air Quality</a>
+                <a href="astronomy.html" class="nav-link active"><i class="fas fa-sun"></i> Astronomy</a>
+                <a href="historical.html" class="nav-link"><i class="fas fa-history"></i> Historical</a>
+                <a href="alerts.html" class="nav-link"><i class="fas fa-exclamation-triangle"></i> Alerts</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <!-- Header Section -->
+        <header>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for a city..." autocomplete="off">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+                <div id="suggestions" class="suggestions-dropdown"></div>
+            </div>
+            <div class="user-location">
+                <button id="location-btn"><i class="fas fa-location-arrow"></i> Use My Location</button>
+            </div>
+        </header>
+
+        <main>
+            <h2><i class="fas fa-sun"></i> Astronomy Information</h2>
+            
+            <!-- Astronomy Section -->
+            <section id="astronomy" class="astronomy-section">
+                <div class="info-grid">
+                    <!-- Sun Data -->
+                    <div class="info-card">
+                        <h3><i class="fas fa-sun"></i> Solar Data</h3>
+                        <div class="astronomy-info">
+                            <div class="astronomy-item">
+                                <i class="fas fa-sun"></i>
+                                <div>
+                                    <div class="astronomy-label">Sunrise</div>
+                                    <div class="astronomy-value">--:--</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-sun"></i>
+                                <div>
+                                    <div class="astronomy-label">Sunset</div>
+                                    <div class="astronomy-value">--:--</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-sun"></i>
+                                <div>
+                                    <div class="astronomy-label">Daylight Duration</div>
+                                    <div class="astronomy-value">--:--</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-sun"></i>
+                                <div>
+                                    <div class="astronomy-label">Solar Noon</div>
+                                    <div class="astronomy-value">--:--</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Moon Data -->
+                    <div class="info-card">
+                        <h3><i class="fas fa-moon"></i> Lunar Data</h3>
+                        <div class="astronomy-info">
+                            <div class="astronomy-item">
+                                <i class="fas fa-moon"></i>
+                                <div>
+                                    <div class="astronomy-label">Moonrise</div>
+                                    <div class="astronomy-value">--:--</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-moon"></i>
+                                <div>
+                                    <div class="astronomy-label">Moonset</div>
+                                    <div class="astronomy-value">--:--</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-moon"></i>
+                                <div>
+                                    <div class="astronomy-label">Moon Phase</div>
+                                    <div class="astronomy-value">--</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-moon"></i>
+                                <div>
+                                    <div class="astronomy-label">Illumination</div>
+                                    <div class="astronomy-value">--%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Astronomy Info -->
+                    <div class="info-card">
+                        <h3><i class="fas fa-star"></i> Additional Data</h3>
+                        <div class="astronomy-info">
+                            <div class="astronomy-item">
+                                <i class="fas fa-globe-americas"></i>
+                                <div>
+                                    <div class="astronomy-label">Latitude</div>
+                                    <div class="astronomy-value">--°</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-globe-americas"></i>
+                                <div>
+                                    <div class="astronomy-label">Longitude</div>
+                                    <div class="astronomy-value">--°</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-calendar"></i>
+                                <div>
+                                    <div class="astronomy-label">Date</div>
+                                    <div class="astronomy-value">--/--/--</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-moon"></i>
+                                <div>
+                                    <div class="astronomy-label">Next Full Moon</div>
+                                    <div class="astronomy-value">--/--/--</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

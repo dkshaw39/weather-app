@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherPro - Professional Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1><i class="fas fa-cloud-sun"></i> WeatherPro</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+                <a href="forecast.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Forecast</a>
+                <a href="air-quality.html" class="nav-link"><i class="fas fa-wind"></i> Air Quality</a>
+                <a href="astronomy.html" class="nav-link"><i class="fas fa-sun"></i> Astronomy</a>
+                <a href="historical.html" class="nav-link"><i class="fas fa-history"></i> Historical</a>
+                <a href="alerts.html" class="nav-link"><i class="fas fa-exclamation-triangle"></i> Alerts</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <!-- Header Section -->
+        <header>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for a city..." autocomplete="off">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+                <div id="suggestions" class="suggestions-dropdown"></div>
+            </div>
+            <div class="user-location">
+                <button id="location-btn"><i class="fas fa-location-arrow"></i> Use My Location</button>
+            </div>
+        </header>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Loading weather data...</p>
+        </div>
+
+        <!-- Current Weather Section -->
+        <section id="current-weather" class="current-weather">
+            <div class="location-info">
+                <h2 class="city-name">New York, US</h2>
+                <p class="date-time">Monday, October 14, 2025 - 10:30 AM</p>
+                <p class="weather-condition">Sunny</p>
+            </div>
+            <div class="current-weather-details">
+                <div class="main-weather">
+                    <img src="https://cdn.weatherapi.com/weather/64x64/day/113.png" alt="Sunny" class="weather-icon">
+                    <div class="temperature">
+                        <span class="temp-value">22°</span>
+                        <span class="temp-unit">C</span>
+                    </div>
+                </div>
+                <div class="weather-stats">
+                    <div class="stat">
+                        <i class="fas fa-wind"></i>
+                        <span class="stat-value">12 km/h</span>
+                        <span class="stat-label">Wind</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-tint"></i>
+                        <span class="stat-value">65%</span>
+                        <span class="stat-label">Humidity</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-sun"></i>
+                        <span class="stat-value">5.2</span>
+                        <span class="stat-label">UV Index</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Weather Data Sections -->
+        <main>
+            <section id="additional-info" class="additional-info">
+                <div class="info-grid">
+                    <!-- Air Quality Section -->
+                    <div class="info-card">
+                        <h3><i class="fas fa-wind"></i> Air Quality</h3>
+                        <div class="aqi-info">
+                            <div class="aqi-value">42</div>
+                            <div class="aqi-label">Good</div>
+                        </div>
+                        <div class="pollutants">
+                            <div class="pollutant">
+                                <span>PM2.5</span>
+                                <span class="pollutant-value">12 μg/m³</span>
+                            </div>
+                            <div class="pollutant">
+                                <span>PM10</span>
+                                <span class="pollutant-value">20 μg/m³</span>
+                            </div>
+                            <div class="pollutant">
+                                <span>O3</span>
+                                <span class="pollutant-value">65 μg/m³</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Astronomy Section -->
+                    <div class="info-card">
+                        <h3><i class="fas fa-sun"></i> Astronomy</h3>
+                        <div class="astronomy-info">
+                            <div class="astronomy-item">
+                                <i class="fas fa-sun"></i>
+                                <div>
+                                    <div class="astronomy-label">Sunrise</div>
+                                    <div class="astronomy-value">6:42 AM</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-moon"></i>
+                                <div>
+                                    <div class="astronomy-label">Sunset</div>
+                                    <div class="astronomy-value">7:15 PM</div>
+                                </div>
+                            </div>
+                            <div class="astronomy-item">
+                                <i class="fas fa-moon"></i>
+                                <div>
+                                    <div class="astronomy-label">Moon Phase</div>
+                                    <div class="astronomy-value">Waxing Crescent</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timezone Section -->
+                    <div class="info-card">
+                        <h3><i class="fas fa-clock"></i> Timezone</h3>
+                        <div class="timezone-info">
+                            <div class="timezone-value">America/New_York</div>
+                            <div class="local-time">Local Time: 10:30 AM</div>
+                            <div class="local-date">Local Date: 2025-10-14</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Weather Alerts -->
+                    <div class="info-card alerts-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Weather Alerts</h3>
+                        <div class="alerts-container">
+                            <div class="no-alerts">No active weather alerts</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Forecast Section -->
+            <section id="forecast" class="forecast-section">
+                <h2><i class="fas fa-calendar-alt"></i> 3-Day Forecast</h2>
+                <div class="forecast-container">
+                    <div class="forecast-day">
+                        <div class="forecast-date">Tue, Oct 15</div>
+                        <img src="https://cdn.weatherapi.com/weather/64x64/day/116.png" alt="Partly Cloudy" class="forecast-icon">
+                        <div class="forecast-temp">24°</div>
+                        <div class="forecast-desc">Partly Cloudy</div>
+                    </div>
+                    <div class="forecast-day">
+                        <div class="forecast-date">Wed, Oct 16</div>
+                        <img src="https://cdn.weatherapi.com/weather/64x64/day/122.png" alt="Cloudy" class="forecast-icon">
+                        <div class="forecast-temp">21°</div>
+                        <div class="forecast-desc">Cloudy</div>
+                    </div>
+                    <div class="forecast-day">
+                        <div class="forecast-date">Thu, Oct 17</div>
+                        <img src="https://cdn.weatherapi.com/weather/64x64/day/119.png" alt="Overcast" class="forecast-icon">
+                        <div class="forecast-temp">19°</div>
+                        <div class="forecast-desc">Overcast</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hourly Forecast Section -->
+            <section id="hourly-forecast" class="hourly-forecast-section">
+                <h2><i class="fas fa-clock"></i> 24-Hour Forecast</h2>
+                <div class="hourly-container">
+                    <!-- Hourly forecast items will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Historical Weather Section -->
+            <section id="historical" class="historical-section">
+                <h2><i class="fas fa-history"></i> 7-Day Historical Weather</h2>
+                <div class="historical-container">
+                    <div class="historical-day">
+                        <div class="historical-date">Mon, Oct 13</div>
+                        <div class="historical-temp">20°</div>
+                        <div class="historical-desc">Sunny</div>
+                    </div>
+                    <div class="historical-day">
+                        <div class="historical-date">Sun, Oct 12</div>
+                        <div class="historical-temp">18°</div>
+                        <div class="historical-desc">Rainy</div>
+                    </div>
+                    <div class="historical-day">
+                        <div class="historical-date">Sat, Oct 11</div>
+                        <div class="historical-temp">22°</div>
+                        <div class="historical-desc">Partly Cloudy</div>
+                    </div>
+                    <div class="historical-day">
+                        <div class="historical-date">Fri, Oct 10</div>
+                        <div class="historical-temp">25°</div>
+                        <div class="historical-desc">Sunny</div>
+                    </div>
+                    <div class="historical-day">
+                        <div class="historical-date">Thu, Oct 9</div>
+                        <div class="historical-temp">23°</div>
+                        <div class="historical-temp">19°</div>
+                        <div class="historical-desc">Thunderstorms</div>
+                    </div>
+                    <div class="historical-day">
+                        <div class="historical-date">Wed, Oct 8</div>
+                        <div class="historical-temp">21°</div>
+                        <div class="historical-desc">Cloudy</div>
+                    </div>
+                    <div class="historical-day">
+                        <div class="historical-date">Tue, Oct 7</div>
+                        <div class="historical-temp">24°</div>
+                        <div class="historical-desc">Sunny</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sports Section -->
+            <section id="sports" class="sports-section">
+                <h2><i class="fas fa-futbol"></i> Sports Events</h2>
+                <div class="sports-container">
+                    <div class="sport-event">
+                        <div class="sport-type">Football</div>
+                        <div class="event-date">Today, 15:00</div>
+                        <div class="match">Manchester United vs Liverpool</div>
+                    </div>
+                    <div class="sport-event">
+                        <div class="sport-type">Basketball</div>
+                        <div class="event-date">Tomorrow, 19:30</div>
+                        <div class="match">Lakers vs Warriors</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 WeatherPro - All weather data provided by WeatherAPI.com</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Quality - WeatherPro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1><i class="fas fa-cloud-sun"></i> WeatherPro</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="forecast.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Forecast</a>
+                <a href="air-quality.html" class="nav-link active"><i class="fas fa-wind"></i> Air Quality</a>
+                <a href="astronomy.html" class="nav-link"><i class="fas fa-sun"></i> Astronomy</a>
+                <a href="historical.html" class="nav-link"><i class="fas fa-history"></i> Historical</a>
+                <a href="alerts.html" class="nav-link"><i class="fas fa-exclamation-triangle"></i> Alerts</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <!-- Header Section -->
+        <header>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for a city..." autocomplete="off">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+                <div id="suggestions" class="suggestions-dropdown"></div>
+            </div>
+            <div class="user-location">
+                <button id="location-btn"><i class="fas fa-location-arrow"></i> Use My Location</button>
+            </div>
+        </header>
+
+        <main>
+            <h2><i class="fas fa-wind"></i> Air Quality Information</h2>
+            
+            <!-- Air Quality Section -->
+            <section id="air-quality" class="air-quality-section">
+                <div class="info-card">
+                    <h3><i class="fas fa-wind"></i> Current Air Quality</h3>
+                    <div class="aqi-info">
+                        <div class="aqi-value">0</div>
+                        <div class="aqi-label">Loading...</div>
+                    </div>
+                    <div class="pollutants">
+                        <div class="pollutant">
+                            <i class="fas fa-wind"></i>
+                            <span class="pollutant-label">PM2.5</span>
+                            <span class="pollutant-value">0 μg/m³</span>
+                        </div>
+                        <div class="pollutant">
+                            <i class="fas fa-wind"></i>
+                            <span class="pollutant-label">PM10</span>
+                            <span class="pollutant-value">0 μg/m³</span>
+                        </div>
+                        <div class="pollutant">
+                            <i class="fas fa-cloud"></i>
+                            <span class="pollutant-label">O3</span>
+                            <span class="pollutant-value">0 μg/m³</span>
+                        </div>
+                        <div class="pollutant">
+                            <i class="fas fa-biohazard"></i>
+                            <span class="pollutant-label">NO2</span>
+                            <span class="pollutant-value">0 μg/m³</span>
+                        </div>
+                        <div class="pollutant">
+                            <i class="fas fa-smog"></i>
+                            <span class="pollutant-label">SO2</span>
+                            <span class="pollutant-value">0 μg/m³</span>
+                        </div>
+                        <div class="pollutant">
+                            <i class="fas fa-wind"></i>
+                            <span class="pollutant-label">CO</span>
+                            <span class="pollutant-value">0 μg/m³</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Air Quality Explanation -->
+                <div class="info-card">
+                    <h3><i class="fas fa-info-circle"></i> Air Quality Index (AQI)</h3>
+                    <div class="aqi-explanation">
+                        <p>The Air Quality Index (AQI) is used to communicate how polluted the air currently is or how polluted it is forecast to become.</p>
+                        <div class="aqi-scale">
+                            <div class="aqi-scale-item">
+                                <div class="aqi-color good"></div>
+                                <div class="aqi-label">Good (0-50)</div>
+                                <div class="aqi-desc">Air quality is considered satisfactory, and air pollution poses little or no risk.</div>
+                            </div>
+                            <div class="aqi-scale-item">
+                                <div class="aqi-color moderate"></div>
+                                <div class="aqi-label">Moderate (51-100)</div>
+                                <div class="aqi-desc">Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people.</div>
+                            </div>
+                            <div class="aqi-scale-item">
+                                <div class="aqi-color usg"></div>
+                                <div class="aqi-label">Unhealthy for Sensitive Groups (101-150)</div>
+                                <div class="aqi-desc">Members of sensitive groups may consider limiting prolonged outdoor exertion.</div>
+                            </div>
+                            <div class="aqi-scale-item">
+                                <div class="aqi-color unhealthy"></div>
+                                <div class="aqi-label">Unhealthy (151-200)</div>
+                                <div class="aqi-desc">Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.</div>
+                            </div>
+                            <div class="aqi-scale-item">
+                                <div class="aqi-color very-unhealthy"></div>
+                                <div class="aqi-label">Very Unhealthy (201-300)</div>
+                                <div class="aqi-desc">Health warnings of emergency conditions. The entire population is more likely to be affected.</div>
+                            </div>
+                            <div class="aqi-scale-item">
+                                <div class="aqi-color hazardous"></div>
+                                <div class="aqi-label">Hazardous (301-500)</div>
+                                <div class="aqi-desc">Health alert: everyone may experience more serious health effects.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

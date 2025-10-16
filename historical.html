@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historical - WeatherPro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation Bar -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1><i class="fas fa-cloud-sun"></i> WeatherPro</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="forecast.html" class="nav-link"><i class="fas fa-calendar-alt"></i> Forecast</a>
+                <a href="air-quality.html" class="nav-link"><i class="fas fa-wind"></i> Air Quality</a>
+                <a href="astronomy.html" class="nav-link"><i class="fas fa-sun"></i> Astronomy</a>
+                <a href="historical.html" class="nav-link active"><i class="fas fa-history"></i> Historical</a>
+                <a href="alerts.html" class="nav-link"><i class="fas fa-exclamation-triangle"></i> Alerts</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+
+        <!-- Header Section -->
+        <header>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for a city..." autocomplete="off">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+                <div id="suggestions" class="suggestions-dropdown"></div>
+            </div>
+            <div class="user-location">
+                <button id="location-btn"><i class="fas fa-location-arrow"></i> Use My Location</button>
+            </div>
+        </header>
+
+        <main>
+            <h2><i class="fas fa-history"></i> Historical Weather Data</h2>
+            
+            <!-- Historical Weather Section -->
+            <section id="historical" class="historical-section">
+                <h3><i class="fas fa-calendar-week"></i> Last 7 Days</h3>
+                <div class="historical-container">
+                    <!-- Historical days will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Custom Date Range -->
+            <section class="date-range-section">
+                <div class="info-card">
+                    <h3><i class="fas fa-sliders-h"></i> Custom Date Range</h3>
+                    <div class="date-controls">
+                        <div class="date-input-group">
+                            <label for="start-date"><i class="fas fa-calendar-alt"></i> Start Date:</label>
+                            <input type="date" id="start-date">
+                        </div>
+                        <div class="date-input-group">
+                            <label for="end-date"><i class="fas fa-calendar-alt"></i> End Date:</label>
+                            <input type="date" id="end-date">
+                        </div>
+                        <button id="get-historical-btn" class="get-data-btn"><i class="fas fa-search"></i> Get Historical Data</button>
+                    </div>
+                    <div class="historical-results">
+                        <!-- Historical results for custom date range -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
