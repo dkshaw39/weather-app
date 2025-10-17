@@ -14,45 +14,52 @@ const alertsSection = document.querySelector('.alerts-container');
 const suggestionsDropdown = document.getElementById('suggestions');
 const loadingIndicator = document.getElementById('loading');
 
-// DOM Elements (make them safe for all pages)
-const searchInput = document.getElementById('search-input');
-const searchBtn = document.getElementById('search-btn');
-const locationBtn = document.getElementById('location-btn');
-const currentWeatherSection = document.getElementById('current-weather');
-const forecastSection = document.getElementById('forecast');
-const historicalSection = document.getElementById('historical');
-const sportsSection = document.getElementById('sports');
-const alertsSection = document.querySelector('.alerts-container');
-const suggestionsDropdown = document.getElementById('suggestions');
-const loadingIndicator = document.getElementById('loading');
+// Initialize DOM elements when needed
+function initializeElements() {
+    // This function doesn't need to do anything now since we're getting elements fresh each time
+    // It's kept for compatibility with existing calls
+}
 
 // Current location
 let currentLocation = "New York";
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize DOM elements for current page
+    initializeElements();
+    
     // Load weather data for default location
     getWeatherData(currentLocation);
     
+    // Get current page elements
+    const currentSearchInput = document.getElementById('search-input');
+    const currentSearchBtn = document.getElementById('search-btn');
+    const currentLocationBtn = document.getElementById('location-btn');
+    
     // Event listeners
-    if (searchBtn) {
-        searchBtn.addEventListener('click', handleSearch);
+    if (currentSearchBtn) {
+        currentSearchBtn.addEventListener('click', handleSearch);
     }
-    if (searchInput) {
-        searchInput.addEventListener('keypress', function(e) {
+    if (currentSearchInput) {
+        currentSearchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 handleSearch();
             }
         });
     }
     
-    if (locationBtn) {
-        locationBtn.addEventListener('click', getCurrentLocationWeather);
+    if (currentLocationBtn) {
+        currentLocationBtn.addEventListener('click', getCurrentLocationWeather);
     }
     
     // Initialize search suggestions if input exists
-    if (searchInput) {
+    if (currentSearchInput) {
         setupSearchSuggestions();
+    }
+    
+    // Initialize keyboard navigation if search input exists
+    if (currentSearchInput) {
+        setupKeyboardNavigation();
     }
     
     // Initialize mobile menu if it exists
@@ -102,11 +109,20 @@ function loadPageSpecificContent() {
 
 // Handle search functionality
 function handleSearch() {
-    const location = searchInput.value.trim();
-    if (location) {
-        getWeatherData(location);
-        suggestionsDropdown.classList.remove('show');
-        searchInput.value = '';
+    // Initialize elements to make sure we have the current page elements
+    initializeElements();
+    
+    // Re-get the search input after initialization
+    const currentSearchInput = document.getElementById('search-input');
+    const currentSuggestionsDropdown = document.getElementById('suggestions');
+    
+    if (currentSearchInput) {
+        const location = currentSearchInput.value.trim();
+        if (location) {
+            getWeatherData(location);
+            if (currentSuggestionsDropdown) currentSuggestionsDropdown.classList.remove('show');
+            currentSearchInput.value = '';
+        }
     }
 }
 
@@ -117,7 +133,7 @@ async function getWeatherData(location) {
     try {
         // Fetch current weather and forecast
         const currentResponse = await fetch(`${BASE_URL}/current.json?key=${API_KEY}&q=${location}&aqi=yes`);
-        const forecastResponse = await fetch(`${BASE_URL}/forecast.json?key=${API_KEY}&q=${location}&days=3&aqi=yes&alerts=yes&hour=24`);
+        const forecastResponse = await fetch(`${BASE_URL}/forecast.json?key=${API_KEY}&q=${location}&days=7&aqi=yes&alerts=yes&hour=24`);
         
         if (!currentResponse.ok || !forecastResponse.ok) {
             throw new Error('Location not found');
@@ -126,14 +142,14 @@ async function getWeatherData(location) {
         const currentData = await currentResponse.json();
         const forecastData = await forecastResponse.json();
         
-        // Update the UI with current weather data
-        displayCurrentWeather(currentData);
-        displayForecast(forecastData);
-        displayHourlyForecast(forecastData);
-        displayAstronomy(currentData);
-        displayAirQuality(currentData);
-        displayAlerts(forecastData);
-        displayTimezone(currentData);
+        // Update the UI with current weather data - only if elements exist
+        if (document.querySelector('.city-name')) displayCurrentWeather(currentData);
+        if (document.querySelector('.forecast-container')) displayForecast(forecastData);
+        if (document.querySelector('.hourly-container')) displayHourlyForecast(forecastData);
+        if (document.querySelector('.astronomy-info')) displayAstronomy(currentData);
+        if (document.querySelector('.pollutants')) displayAirQuality(currentData);
+        if (document.querySelector('.alerts-container')) displayAlerts(forecastData);
+        if (document.querySelector('.timezone-info')) displayTimezone(currentData);
         
         // Also fetch historical and sports data
         getHistoricalWeather(location);
@@ -403,15 +419,15 @@ async function getWeatherData(location) {
         const currentData = await currentResponse.json();
         const forecastData = await forecastResponse.json();
         
-        // Update the UI with current weather data
-        displayCurrentWeather(currentData);
-        displayForecast(forecastData);
-        displayWeekForecast(forecastData); // Added for 7-day forecast
-        displayHourlyForecast(forecastData);
-        displayAstronomy(currentData);
-        displayAirQuality(currentData);
-        displayAlerts(forecastData);
-        displayTimezone(currentData);
+        // Update the UI with current weather data - only if elements exist
+        if (document.querySelector('.city-name')) displayCurrentWeather(currentData);
+        if (document.querySelector('.forecast-container')) displayForecast(forecastData);
+        if (document.querySelector('.week-forecast-container')) displayWeekForecast(forecastData);
+        if (document.querySelector('.hourly-container')) displayHourlyForecast(forecastData);
+        if (document.querySelector('.astronomy-info')) displayAstronomy(currentData);
+        if (document.querySelector('.pollutants')) displayAirQuality(currentData);
+        if (document.querySelector('.alerts-container')) displayAlerts(forecastData);
+        if (document.querySelector('.timezone-info')) displayTimezone(currentData);
         
         // Also fetch historical and sports data
         getHistoricalWeather(location);
@@ -703,6 +719,12 @@ function getSportIcon(sportType) {
 
 // Get user's current location
 function getCurrentLocationWeather() {
+    // Initialize elements to make sure we have the current page elements
+    initializeElements();
+    
+    // Re-get the location button after initialization
+    const currentLocationBtn = document.getElementById('location-btn');
+    
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             position => {
@@ -762,32 +784,40 @@ async function getLocationFromCoords(lat, lon) {
 
 // Setup search suggestions
 function setupSearchSuggestions() {
+    const currentSearchInput = document.getElementById('search-input');
+    const currentSuggestionsDropdown = document.getElementById('suggestions');
+    
+    if (!currentSearchInput || !currentSuggestionsDropdown) return;
+    
     let timeout;
     
-    searchInput.addEventListener('input', function() {
+    currentSearchInput.addEventListener('input', function() {
         clearTimeout(timeout);
         
-        const query = searchInput.value.trim();
+        const query = currentSearchInput.value.trim();
         
         if (query.length > 2) {
             timeout = setTimeout(() => {
                 fetchSuggestions(query);
             }, 300);
         } else {
-            suggestionsDropdown.classList.remove('show');
+            currentSuggestionsDropdown.classList.remove('show');
         }
     });
     
     // Hide suggestions when clicking outside
     document.addEventListener('click', function(e) {
-        if (!searchInput.contains(e.target) && !suggestionsDropdown.contains(e.target)) {
-            suggestionsDropdown.classList.remove('show');
+        if (currentSearchInput && !currentSearchInput.contains(e.target) && currentSuggestionsDropdown && !currentSuggestionsDropdown.contains(e.target)) {
+            currentSuggestionsDropdown.classList.remove('show');
         }
     });
 }
 
 // Fetch location suggestions
 async function fetchSuggestions(query) {
+    const currentSuggestionsDropdown = document.getElementById('suggestions');
+    if (!currentSuggestionsDropdown) return;
+    
     try {
         const response = await fetch(`${BASE_URL}/search.json?key=${API_KEY}&q=${query}`);
         const suggestions = await response.json();
@@ -800,7 +830,12 @@ async function fetchSuggestions(query) {
 
 // Display search suggestions
 function displaySuggestions(suggestions) {
-    suggestionsDropdown.innerHTML = '';
+    const currentSearchInput = document.getElementById('search-input');
+    const currentSuggestionsDropdown = document.getElementById('suggestions');
+    
+    if (!currentSuggestionsDropdown || !currentSearchInput) return;
+    
+    currentSuggestionsDropdown.innerHTML = '';
     
     if (suggestions.length > 0) {
         suggestions.forEach(location => {
@@ -808,16 +843,16 @@ function displaySuggestions(suggestions) {
             suggestionEl.className = 'suggestion-item';
             suggestionEl.textContent = `${location.name}, ${location.country}`;
             suggestionEl.addEventListener('click', () => {
-                searchInput.value = `${location.name}, ${location.country}`;
+                currentSearchInput.value = `${location.name}, ${location.country}`;
                 getWeatherData(`${location.name}, ${location.country}`);
-                suggestionsDropdown.classList.remove('show');
+                currentSuggestionsDropdown.classList.remove('show');
             });
-            suggestionsDropdown.appendChild(suggestionEl);
+            currentSuggestionsDropdown.appendChild(suggestionEl);
         });
         
-        suggestionsDropdown.classList.add('show');
+        currentSuggestionsDropdown.classList.add('show');
     } else {
-        suggestionsDropdown.classList.remove('show');
+        currentSuggestionsDropdown.classList.remove('show');
     }
 }
 
@@ -877,18 +912,26 @@ function getMoonPhase(phase) {
 
 // Show/hide loading indicator
 function showLoading(show) {
-    if (show) {
-        loadingIndicator.classList.remove('hidden');
-    } else {
-        loadingIndicator.classList.add('hidden');
+    const currentLoadingIndicator = document.getElementById('loading');
+    if (currentLoadingIndicator) {
+        if (show) {
+            currentLoadingIndicator.classList.remove('hidden');
+        } else {
+            currentLoadingIndicator.classList.add('hidden');
+        }
     }
 }
 
 // Add keyboard navigation for search suggestions
 function setupKeyboardNavigation() {
+    const currentSearchInput = document.getElementById('search-input');
+    const currentSuggestionsDropdown = document.getElementById('suggestions');
+    
+    if (!currentSearchInput || !currentSuggestionsDropdown) return;
+    
     let currentIndex = -1;
     
-    searchInput.addEventListener('keydown', function(e) {
+    currentSearchInput.addEventListener('keydown', function(e) {
         const suggestions = document.querySelectorAll('.suggestion-item');
         
         if (e.key === 'ArrowDown') {
@@ -906,7 +949,7 @@ function setupKeyboardNavigation() {
                 currentIndex = -1;
             }
         } else if (e.key === 'Escape') {
-            suggestionsDropdown.classList.remove('show');
+            currentSuggestionsDropdown.classList.remove('show');
             currentIndex = -1;
         }
     });
